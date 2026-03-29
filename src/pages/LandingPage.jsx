@@ -154,9 +154,9 @@ function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
         <p className="text-gray-500 text-sm">© 2025 Face2Learn. All rights reserved.</p>
         <div className="flex gap-6 text-gray-500 text-sm">
-          <a href="#" className="hover:text-white transition-colors">Privacy</a>
-          <a href="#" className="hover:text-white transition-colors">Terms</a>
-          <a href="#" className="hover:text-white transition-colors">Support</a>
+          <button className="hover:text-white transition-colors">Privacy</button>
+<button className="hover:text-white transition-colors">Terms</button>
+<button className="hover:text-white transition-colors">Support</button>
         </div>
       </div>
     </footer>

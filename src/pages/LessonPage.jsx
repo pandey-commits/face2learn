@@ -260,7 +260,7 @@ print(message)  # Hello, Alex!`} />
 
 // ── BREAK MODAL ────────────────────────────────────────────
 function BreakModal({ onClose }) {
-  const [seconds, setSeconds] = useState(105);
+  const [seconds] = useState(105);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center"

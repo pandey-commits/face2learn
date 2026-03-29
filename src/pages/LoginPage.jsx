@@ -88,9 +88,9 @@ const handleSubmit = async (e) => {
                   />
                   <span className="text-gray-300 text-sm">Remember me</span>
                 </label>
-                <a href="#" className="text-blue-400 text-sm hover:text-blue-300 transition-colors">
-                  Forgot?
-                </a>
+                <button className="text-blue-400 text-sm hover:text-blue-300 transition-colors">
+  Forgot?
+</button>
               </div>
 
               {error && (
