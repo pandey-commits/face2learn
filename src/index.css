@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #080d1a;
+  color: #e8eaf6;
+  font-family: 'Outfit', sans-serif;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold
+           px-6 py-3 rounded-xl transition-all duration-200 cursor-pointer;
+  }
+  .btn-secondary {
+    @apply bg-transparent border border-gray-600 hover:border-gray-400
+           text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200;
+  }
+  .dark-card {
+    @apply bg-[#1a2540] border border-[rgba(99,130,255,0.15)] rounded-xl p-5;
+  }
+  .dark-input {
+    @apply bg-[#0f1729] border border-[rgba(99,130,255,0.2)] rounded-lg
+           px-4 py-3 text-white w-full focus:outline-none
+           focus:border-blue-500 transition-colors placeholder-gray-500;
+  }
+}
