@@ -3,6 +3,10 @@ import { Link, useParams } from 'react-router-dom';
 import AppNavbar from '../components/layout/AppNavbar';
 import { submitQuiz } from '../api/index';
 import { useAuth } from '../context/AuthContext';
+import { submitQuiz }   from '../api/index';
+import { saveQuizResult } from '../firebase/firestore';
+import { useAuth }      from '../context/AuthContext';
+
 
 // ── QUIZ DATA ──────────────────────────────────────────────
 const quizData = {
@@ -211,6 +215,8 @@ export default function QuizPage() {
   if (current < quiz.questions.length - 1) {
     setCurrent(prev => prev + 1);
   } else {
+    setSubmitted(true);
+
     // Submit to backend
     const result = await submitQuiz(
       user?.uid || 'demo-user',
@@ -219,8 +225,17 @@ export default function QuizPage() {
       quiz.questions,
       'calm'
     );
-    console.log('Quiz result from backend:', result);
-    setSubmitted(true);
+
+    // Save to Firestore
+    if (user && result?.success) {
+      await saveQuizResult(
+        user.uid,
+        id,
+        result.score,
+        result.accuracy,
+        result.xpEarned,
+      );
+    }
   }
 };
 

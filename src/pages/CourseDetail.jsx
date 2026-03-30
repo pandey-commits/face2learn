@@ -1,5 +1,10 @@
 import { useParams, Link } from 'react-router-dom';
 import AppNavbar from '../components/layout/AppNavbar';
+import { useEffect, useState } from 'react';
+import { useParams, Link }     from 'react-router-dom';
+import AppNavbar                from '../components/layout/AppNavbar';
+import { getCourseProgress, saveCourseProgress } from '../firebase/firestore';
+import { useAuth }              from '../context/AuthContext';
 
 const coursesData = {
   1: {
@@ -44,6 +49,20 @@ function StatusBadge({ status }) {
 export default function CourseDetail() {
   const { id } = useParams();
   const course  = coursesData[id] || coursesData[1];
+  const { user }                          = useAuth();
+  const [progress, setProgress]           = useState(0);
+  const [completedMods, setCompletedMods] = useState([]);
+
+useEffect(() => {
+  const fetchProgress = async () => {
+    if (user) {
+      const data = await getCourseProgress(user.uid, id);
+      setProgress(data.percentage || 0);
+      setCompletedMods(data.completedModules || []);
+    }
+  };
+  fetchProgress();
+}, [user, id]);
 
   return (
     <div className="min-h-screen" style={{ background: '#080d1a' }}>

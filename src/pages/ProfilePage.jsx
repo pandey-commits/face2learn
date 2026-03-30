@@ -32,16 +32,16 @@ function Toggle({ on, onToggle }) {
 
 export default function ProfilePage() {
 
-  // ── AUTH ─────────────────────────────────────────────────
-  const { logout } = useAuth();
-  const navigate   = useNavigate();
+  // ── AUTH — real data from Firebase ───────────────────────
+  const { user, userData, logout } = useAuth();
+  const navigate = useNavigate();
 
-  // ── STATE ─────────────────────────────────────────────────
+  // ── FORM STATE — prefilled with real Firebase data ────────
   const [form, setForm] = useState({
-    firstName: 'Alex',
-    lastName:  'Kumar',
-    email:     'demo@mindflow.com',
-    role:      'Student',
+    firstName: userData?.firstName || 'Alex',
+    lastName:  userData?.lastName  || 'Kumar',
+    email:     userData?.email     || 'demo@mindflow.com',
+    role:      userData?.role      || 'Student',
   });
 
   const [settings, setSettings] = useState({
@@ -70,6 +70,11 @@ export default function ProfilePage() {
     navigate('/');
   };
 
+  // ── REAL DATA from Firestore ───────────────────────────────
+  const xp               = userData?.xp               || 0;
+  const streak           = userData?.streak           || 0;
+  const lessonsCompleted = userData?.lessonsCompleted || 0;
+
   // ── RENDER ────────────────────────────────────────────────
   return (
     <div className="min-h-screen" style={{ background: '#080d1a' }}>
@@ -77,7 +82,6 @@ export default function ProfilePage() {
 
       <div className="max-w-5xl mx-auto px-6 pt-28 pb-16">
 
-        {/* Title */}
         <h1 className="text-3xl font-bold text-white mb-8">Profile & Settings</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -86,9 +90,10 @@ export default function ProfilePage() {
           <div className="dark-card flex flex-col items-center text-center py-8">
 
             {/* Avatar */}
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600
-                            flex items-center justify-center text-white font-bold text-2xl mb-4">
-              AK
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500
+                            to-purple-600 flex items-center justify-center
+                            text-white font-bold text-2xl mb-4">
+              {form.firstName[0]}{form.lastName[0]}
             </div>
 
             <h2 className="text-white font-bold text-xl mb-1">
@@ -98,23 +103,25 @@ export default function ProfilePage() {
               {form.role} · Joined Jan 2025
             </p>
 
-            {/* Stats */}
+            {/* Real stats from Firestore */}
             <div className="flex gap-6 mb-6 w-full justify-center"
               style={{
                 borderTop:    '1px solid rgba(99,130,255,0.1)',
                 borderBottom: '1px solid rgba(99,130,255,0.1)',
-                padding: '1rem 0'
+                padding: '1rem 0',
               }}>
               <div className="text-center">
-                <p className="text-white font-bold text-lg">2,480</p>
+                <p className="text-white font-bold text-lg">
+                  {xp.toLocaleString()}
+                </p>
                 <p className="text-gray-500 text-xs">XP</p>
               </div>
               <div className="text-center">
-                <p className="text-white font-bold text-lg">12</p>
+                <p className="text-white font-bold text-lg">{streak}</p>
                 <p className="text-gray-500 text-xs">Streak</p>
               </div>
               <div className="text-center">
-                <p className="text-white font-bold text-lg">38</p>
+                <p className="text-white font-bold text-lg">{lessonsCompleted}</p>
                 <p className="text-gray-500 text-xs">Lessons</p>
               </div>
             </div>
@@ -136,7 +143,9 @@ export default function ProfilePage() {
 
             {/* Personal info */}
             <div className="dark-card">
-              <h2 className="text-white font-bold text-base mb-6">Personal Information</h2>
+              <h2 className="text-white font-bold text-base mb-6">
+                Personal Information
+              </h2>
               <div className="grid grid-cols-2 gap-4 mb-4">
                 <div>
                   <label className="block text-gray-400 text-sm mb-2">First Name</label>
