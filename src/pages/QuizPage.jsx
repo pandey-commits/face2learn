@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import AppNavbar from '../components/layout/AppNavbar';
+import { submitQuiz } from '../api/index';
+import { useAuth } from '../context/AuthContext';
 
 // ── QUIZ DATA ──────────────────────────────────────────────
 const quizData = {
@@ -183,6 +185,7 @@ export default function QuizPage() {
   const [answers, setAnswers]         = useState({});
   const [submitted, setSubmitted]     = useState(false);
   const [timeLeft, setTimeLeft]       = useState(300);
+  const {user} = useAuth();
 
   // Timer countdown
   useEffect(() => {
@@ -204,13 +207,22 @@ export default function QuizPage() {
     setAnswers(prev => ({ ...prev, [currentQ.id]: optId }));
   };
 
-  const handleNext = () => {
-    if (current < quiz.questions.length - 1) {
-      setCurrent(prev => prev + 1);
-    } else {
-      setSubmitted(true);
-    }
-  };
+  const handleNext = async () => {
+  if (current < quiz.questions.length - 1) {
+    setCurrent(prev => prev + 1);
+  } else {
+    // Submit to backend
+    const result = await submitQuiz(
+      user?.uid || 'demo-user',
+      id,
+      answers,
+      quiz.questions,
+      'calm'
+    );
+    console.log('Quiz result from backend:', result);
+    setSubmitted(true);
+  }
+};
 
   const handlePrev = () => {
     if (current > 0) setCurrent(prev => prev - 1);
