@@ -11,26 +11,72 @@
 }
 
 body {
-  background-color: #080d1a;
+  background-color: #060b18;
   color: #e8eaf6;
   font-family: 'Outfit', sans-serif;
 }
 
+/* ── SCROLLBAR ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #060b18; }
+::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #4361ee; }
+
 @layer components {
+
+  /* ── BUTTONS ─────────────────────────────────────────── */
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold
-           px-6 py-3 rounded-xl transition-all duration-200 cursor-pointer;
+    @apply relative text-white font-semibold px-6 py-3 rounded-xl
+           transition-all duration-200 cursor-pointer
+           hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0;
+    background: linear-gradient(135deg, #4361ee, #7c3aed);
   }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #5472ff, #8b4cf7);
+    box-shadow: 0 8px 25px rgba(67,97,238,0.4);
+  }
+
   .btn-secondary {
-    @apply bg-transparent border border-gray-600 hover:border-gray-400
-           text-white font-semibold px-6 py-3 rounded-xl transition-all duration-200;
+    @apply bg-transparent border border-gray-600 hover:border-blue-500
+           text-white font-semibold px-6 py-3 rounded-xl
+           transition-all duration-200 hover:-translate-y-0.5;
   }
+
+  /* ── CARDS ───────────────────────────────────────────── */
   .dark-card {
-    @apply bg-[#1a2540] border border-[rgba(99,130,255,0.15)] rounded-xl p-5;
+    @apply rounded-xl p-5;
+    background: linear-gradient(145deg, #0f1d35, #0d1a30);
+    border: 1px solid rgba(99,130,255,0.12);
+    transition: border-color 0.2s, transform 0.2s;
   }
+  .dark-card:hover {
+    border-color: rgba(99,130,255,0.25);
+  }
+
+  /* ── INPUTS ──────────────────────────────────────────── */
   .dark-input {
-    @apply bg-[#0f1729] border border-[rgba(99,130,255,0.2)] rounded-lg
-           px-4 py-3 text-white w-full focus:outline-none
-           focus:border-blue-500 transition-colors placeholder-gray-500;
+    @apply rounded-lg px-4 py-3 text-white w-full
+           focus:outline-none transition-all duration-200
+           placeholder-gray-500;
+    background: rgba(6,11,24,0.8);
+    border: 1px solid rgba(99,130,255,0.15);
+  }
+  .dark-input:focus {
+    border-color: #4361ee;
+    box-shadow: 0 0 0 3px rgba(67,97,238,0.15);
+  }
+
+  /* ── GRADIENT TEXT ───────────────────────────────────── */
+  .gradient-text {
+    @apply text-transparent bg-clip-text;
+    background-image: linear-gradient(135deg, #6366f1, #a855f7);
+  }
+
+  /* ── GLOW EFFECTS ────────────────────────────────────── */
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(67,97,238,0.3);
+  }
+  .glow-purple {
+    box-shadow: 0 0 20px rgba(124,58,237,0.3);
   }
 }

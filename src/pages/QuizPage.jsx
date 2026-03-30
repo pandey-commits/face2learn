@@ -3,9 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import AppNavbar from '../components/layout/AppNavbar';
 import { submitQuiz } from '../api/index';
 import { useAuth } from '../context/AuthContext';
-import { submitQuiz }   from '../api/index';
 import { saveQuizResult } from '../firebase/firestore';
-import { useAuth }      from '../context/AuthContext';
 
 
 // ── QUIZ DATA ──────────────────────────────────────────────

@@ -1,10 +1,8 @@
-import { useParams, Link } from 'react-router-dom';
-import AppNavbar from '../components/layout/AppNavbar';
 import { useEffect, useState } from 'react';
 import { useParams, Link }     from 'react-router-dom';
-import AppNavbar                from '../components/layout/AppNavbar';
-import { getCourseProgress, saveCourseProgress } from '../firebase/firestore';
-import { useAuth }              from '../context/AuthContext';
+import AppNavbar               from '../components/layout/AppNavbar';
+import { getCourseProgress }   from '../firebase/firestore';
+import { useAuth }             from '../context/AuthContext';
 
 const coursesData = {
   1: {
