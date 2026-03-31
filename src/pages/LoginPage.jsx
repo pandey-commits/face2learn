@@ -111,11 +111,10 @@ export default function LoginPage() {
                   />
                   <span className="text-gray-300 text-sm">Remember me</span>
                 </label>
-                <button
-                  type="button"
-                  className="text-blue-400 text-sm hover:text-blue-300 transition-colors">
-                  Forgot?
-                </button>
+                <Link to="/forgot-password"
+                className="text-blue-400 text-sm hover:text-blue-300 transition-colors">
+                Forgot password?
+                </Link>
               </div>
 
               {/* Error message */}

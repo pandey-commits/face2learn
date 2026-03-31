@@ -6,6 +6,7 @@ import {
 } from 'firebase/auth';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { auth, db } from './config';
+import { sendPasswordResetEmail } from 'firebase/auth';
 
 // ── REGISTER ───────────────────────────────────────────────
 export const registerUser = async (firstName, lastName, email, password, role) => {
@@ -46,3 +47,10 @@ export const getUserData = async (uid) => {
 
 // ── AUTH STATE LISTENER ────────────────────────────────────
 export const onAuthChange = (callback) => onAuthStateChanged(auth, callback);
+
+
+
+// ── FORGOT PASSWORD ────────────────────────────────────────
+export const resetPassword = async (email) => {
+  await sendPasswordResetEmail(auth, email);
+};

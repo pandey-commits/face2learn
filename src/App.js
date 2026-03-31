@@ -11,6 +11,7 @@ import Analytics from './pages/Analytics';
 import EmotionDashboard from './pages/EmotionDashboard';
 import SmartHints from './pages/SmartHints';
 import ProfilePage from './pages/ProfilePage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/emotion" element={<EmotionDashboard/>} />
         <Route path="/hints" element={<SmartHints/>} />
         <Route path="/profile" element={<ProfilePage/>} />
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
 
       </Routes>
     </BrowserRouter>
