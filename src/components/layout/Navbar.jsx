@@ -13,12 +13,14 @@ export default function Navbar() {
       {/* Logo */}
       <Link to="/" className="flex items-center gap-3">
         <img 
-        src="logo.png"
+        src="logo01.png"
         alt="Face2Learn"
         className="w-9 h-9 rounded-lg object-contain"
         />
 
-      <span className="text-white font-bold text-lg">Face2Learn</span>
+      <span className="font-bold text-2xl">
+      <span className="text-blue-500">Face</span><span className="text-white-500">2</span><span className="text-blue-500">Learn</span>
+      </span>
       </Link>
 
       {/* Buttons */}

@@ -70,8 +70,8 @@ function HeroSection() {
       <div className="relative z-10 flex flex-wrap justify-center gap-8
                       mt-14 text-gray-400 text-sm">
         {[
-          { icon: '👥', text: '50K+ Learners' },
-          { icon: '⭐', text: '4.9 Rating' },
+          { icon: '👥', text: '20K+ Learners' },
+          { icon: '⭐', text: '4.7 Rating' },
           { icon: '🏆', text: 'Certified' },
         ].map(s => (
           <div key={s.text} className="flex items-center gap-2">
